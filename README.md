@@ -1,15 +1,49 @@
 # Whatsapp Discover
 
-A tool for getting phone numbers of devices using Whatsapp by real time sniffing from an interface (disabled in this first version) or from a list of pcap files, which can be processed in batch
+Una herramienta para obtener el número asociado a los dispositivos móviles que
+estén usando Whatapp en la misma red. Se puede especificar la interfaz actual
+para interceptar los paquetes en tiempo real o especificarlos ya creados. Dichos
+paquetes se procesan en forma de lotes. 
 
 ---
 
-### Note 
+### Nota de 0aps
 
-This code has been released as a PoC, and it does not pretend to be a hacking malicious tool. That is why real time sniffing has been disabled in this first version, to prevent from script kiddies. 
+Inicialmente la herramienta se lanzó como una prueba de concepto la cual no tiene
+como objetivo ser usada con fines malintencionados, así lo especificó el autor en:
+https://github.com/deepakdaswani/whatsapp_discover
 
-It is very easy to someone with basics knowledge of programming to enable this real time sniffing mode in this code. Also make sure that interface can get through the traffic that this script is expecting.
+Me tomé la molestia de agregar la opción de sniffear en tiempo real así como de traducir
+los comentarios y parte del código al español. Finalmente, anexo una pequeña aclaratoria de cómo usar la herramienta y en qué contexto.
 
+¿Cómo crear los paquetes? 
+Con alguna herramienta de red que tenga la opción. Tcpdump/Wireshark, por ejemplo.
+Leer:
+http://www.hackplayers.com/2013/12/que-deberiamos-saber-sobre-tcpdump-1.html
+http://www.hackplayers.com/2013/12/que-deberiamos-saber-sobre-tcpdump-2.html
+http://www.hackplayers.com/2014/01/que-deberiamos-saber-sobre-tcpdump-3.html
+http://blog.iurlek.com/2011/10/tcpdump-avanzado-el-arte-de-capturar-y-analizar-el-trafico-de-la-red/
+
+Cuando intercepto en tiempo real no recibo nada ...
+
+Hay que colocar el sniffer en algún sitio por el que pase todo el tráfico de la red. Esto es posible lograrlo con algunas capacidades de los switches como el Port Mirroring (puertos espejo) o cualquier electrónica de red por la que pase todo el tráfico (Firewalls, TAP, Apliances). Desde luego, en caso de una red nuestra.
+
+En caso contrario, es posible por medio de envenenamiento ARP.
+Leer:
+es.wikipedia.org/wiki/Puerto_espejo‎
+http://es.wikipedia.org/wiki/ARP_Spoofing
+
+¿Por qué esto es así?
+Porque en las redes ethernet conmutadas (basada en switches y no en hubs) al
+igual que los routers inalámbricos se tiene la red segmentadad por puertos.
+
+Documentación para enteder/instalar las dependencias
+http://www.perlmonks.org/?node_id=170648
+http://search.cpan.org/~saper/Net-Pcap-0.17/Pcap.pm
+http://search.cpan.org/dist/Net-IP/IP.pm
+http://search.cpan.org/~spidb/Net-ext-1.011/lib/Net/TCP.pm
+
+Espero les sea útil, y gracia a @dipudaswani por el código.
 
 ### Author
 
@@ -19,11 +53,11 @@ Deepak Daswani
 
 [http://deepakdaswani.es](http://deepakdaswani.es)
 
-### Usage
+### Uso
 
 	$ ./whatsapp_discover.pl -i interface | -f pcapfile[s]
 
-### Example
+### Ejemplo
 
 In the example below, the numbers have been darkened with X characters for privacy reasons
 
@@ -43,7 +77,4 @@ In the example below, the numbers have been darkened with X characters for priva
 	Got 1 number! S.O: Symbian-2.11.173-443 Mobile number: +34660XXXXXX
 	
 	4 files parsed. 5 phone numbers using Whatsapp found...
-
-
-
 
