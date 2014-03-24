@@ -1,7 +1,7 @@
 # Whatsapp Discover
 
 Una herramienta para obtener el número asociado a los dispositivos móviles que
-estén usando Whatapp en la misma red. Se puede especificar la interfaz actual
+estén usando Whatsapp en la misma red. Se puede especificar la interfaz actual
 para interceptar los paquetes en tiempo real o especificarlos ya creados. Dichos
 paquetes se procesan en forma de lotes. 
 
